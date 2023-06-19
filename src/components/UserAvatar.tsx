@@ -3,7 +3,7 @@ import { User } from "next-auth";
 import Image from "next/image";
 import { FC } from "react";
 import { Icons } from "./Icons";
-import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Avatar, AvatarFallback } from "./ui/Avatar";
 
 interface UserAvatarProps extends AvatarProps {
   user: Pick<User, "name" | "image">;

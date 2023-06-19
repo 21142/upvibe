@@ -1,7 +1,11 @@
 import {
   ChevronLeft,
   Hexagon,
+  Home,
+  ImageIcon,
+  Link2,
   User,
+  X,
   type LucideIcon,
   type LucideProps,
 } from "lucide-react";
@@ -11,6 +15,10 @@ export const Icons = {
   logo: Hexagon,
   chevronLeft: ChevronLeft,
   user: User,
+  close: X,
+  home: Home,
+  link: Link2,
+  image: ImageIcon,
   circle: (props: LucideProps) => (
     <svg
       viewBox="0 0 24 24"

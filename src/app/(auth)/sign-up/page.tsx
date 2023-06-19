@@ -1,7 +1,8 @@
-import Link from "next/link";
+import { Icons } from "@/components/Icons";
+import SignUp from "@/components/SignUp";
 import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
-import { Icons } from "@/components/Icons";
+import Link from "next/link";
 
 const page = () => {
   return (
@@ -17,7 +18,8 @@ const page = () => {
           <Icons.chevronLeft className="mr-2 h-4 w-4" />
           Home
         </Link>
-        Sign up
+        
+        <SignUp />
       </div>
     </div>
   );

@@ -1,0 +1,1 @@
+export const INIFNITE_SCROLLING = 2;

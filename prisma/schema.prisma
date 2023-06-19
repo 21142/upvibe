@@ -40,12 +40,108 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  username      String?   @unique
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id              String         @id @default(cuid())
+  name            String?
+  username        String?        @unique
+  email           String?        @unique
+  emailVerified   DateTime?
+  image           String?
+  accounts        Account[]
+  sessions        Session[]
+  posts           Post[]
+  comments        Comment[]
+  commentVotes    CommentVote[]
+  votes           Vote[]
+  createdZenZones ZenZone[]      @relation("CreatedBy")
+  subscriptions   Subscription[]
+}
+
+model ZenZone {
+  id          String         @id @default(cuid())
+  name        String
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  posts       Post[]
+  creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
+  creatorId   String?
+  subscribers Subscription[]
+
+  @@index([name])
+  @@index([creatorId])
+}
+
+model Post {
+  id        String    @id @default(cuid())
+  title     String
+  content   Json?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  zenZone   ZenZone   @relation(fields: [zenZoneId], references: [id])
+  zenZoneId String
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  String
+  comments  Comment[]
+  votes     Vote[]
+
+  @@index([zenZoneId])
+  @@index([authorId])
+}
+
+model Comment {
+  id        String        @id @default(cuid())
+  text      String
+  createdAt DateTime      @default(now())
+  post      Post          @relation(fields: [postId], references: [id])
+  postId    String
+  author    User          @relation(fields: [authorId], references: [id])
+  authorId  String
+  replyTo   Comment?      @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replies   Comment[]     @relation("ReplyTo")
+  replyToId String?
+  votes     CommentVote[]
+  commentId String?
+
+  @@index([replyToId])
+  @@index([postId])
+  @@index([authorId])
+}
+
+model Vote {
+  type   VoteType
+  post   Post     @relation(fields: [postId], references: [id])
+  postId String
+  user   User     @relation(fields: [userId], references: [id])
+  userId String
+
+  @@id([userId, postId])
+  @@index([postId])
+  @@index([userId])
+}
+
+model CommentVote {
+  type      VoteType
+  comment   Comment  @relation(fields: [commentId], references: [id])
+  commentId String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+
+  @@id([userId, commentId])
+  @@index([commentId])
+  @@index([userId])
+}
+
+model Subscription {
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  zenZone   ZenZone @relation(fields: [zenZoneId], references: [id])
+  zenZoneId String
+
+  @@id([userId, zenZoneId])
+  @@index([userId])
+  @@index([zenZoneId])
+}
+
+enum VoteType {
+  UP
+  DOWN
 }
