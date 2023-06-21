@@ -1,4 +1,5 @@
 import CreatePost from "@/components/CreatePost"
+import PostFeed from "@/components/PostFeed"
 import { INIFNITE_SCROLLING } from "@/config"
 import { getAuthSession } from "@/lib/auth"
 import { db } from "@/lib/db"
@@ -38,6 +39,7 @@ const ZenZonePage = async ({ params }: ZenZonePageProps) => {
          {`zenzone / ${zenZone.name}`}
       </h1>
       <CreatePost session={session} />
+      <PostFeed initialPosts={zenZone.posts} zenZoneName={zenZone.name} />
    </>
 }
 
