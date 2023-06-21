@@ -1,10 +1,15 @@
 import { ClassValue, clsx } from 'clsx'
-import { twMerge } from 'tailwind-merge'
 import { formatDistanceToNowStrict } from 'date-fns'
 import locale from 'date-fns/locale/en-US'
+import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
+}
+
+export function shortenPathname(pathname: string): string {
+  //remove the last part of the pathname <=> /zenzone/abc/submit -> /zenzone/abc
+  return pathname.split('/').slice(0, -1).join('/')
 }
 
 const formatDistanceLocale = {

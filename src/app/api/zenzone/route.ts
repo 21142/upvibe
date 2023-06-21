@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { zenZoneValidator } from "@/lib/validation/zenzone";
+import { ZenZoneValidator } from "@/lib/validation/zenzone";
 import { z } from "zod";
 
 export async function POST(req: Request) {
@@ -11,7 +11,7 @@ export async function POST(req: Request) {
          return new Response("Unauthorized", { status: 401 });
       }
       const body = await req.json();
-      const { name } = zenZoneValidator.parse(body);
+      const { name } = ZenZoneValidator.parse(body);
 
       const zenZoneAlreadyExists = await db.zenZone.findFirst({
          where: {

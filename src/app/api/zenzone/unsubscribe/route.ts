@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { zenZoneSubscriptionValidator } from "@/lib/validation/zenzone";
+import { ZenZoneSubscriptionValidator } from "@/lib/validation/zenzone";
 import { z } from "zod";
 
 export async function POST(req: Request) {
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
       const body = await req.json();
 
-      const { zenZoneId } = zenZoneSubscriptionValidator.parse(body);
+      const { zenZoneId } = ZenZoneSubscriptionValidator.parse(body);
 
       const subscriptionExists = await db.subscription.findFirst({
          where: {

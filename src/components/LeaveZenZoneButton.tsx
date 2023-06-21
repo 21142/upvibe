@@ -48,6 +48,7 @@ const LeaveZenZoneButton = ({ isSubscribed, zenZoneId, zenZoneName }: LeaveZenZo
          return toast({
             title: "Subscribed to Zen Zone",
             description: `You are now subscribed to zenzone / ${zenZoneName}.`,
+            variant: "success",
          })
       }
    })
