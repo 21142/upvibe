@@ -1,6 +1,6 @@
 import CreatePost from "@/components/CreatePost"
 import PostFeed from "@/components/PostFeed"
-import { INIFNITE_SCROLLING } from "@/config"
+import { INFINITE_SCROLLING } from "@/config"
 import { getAuthSession } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { notFound } from "next/navigation"
@@ -27,7 +27,17 @@ const ZenZonePage = async ({ params }: ZenZonePageProps) => {
                comments: true,
                votes: true
             },
-            take: INIFNITE_SCROLLING,
+            orderBy: [
+               {
+                  votes: {
+                     _count: 'desc',
+                  }
+               },
+               {
+                  createdAt: 'desc'
+               }
+            ],
+            take: INFINITE_SCROLLING,
          }
       }
    })

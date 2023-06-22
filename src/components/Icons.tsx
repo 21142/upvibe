@@ -1,9 +1,12 @@
 import {
+  ArrowBigDown,
+  ArrowBigUp,
   ChevronLeft,
   Command,
   Home,
   ImageIcon,
   Link2,
+  Loader2,
   MessageSquare,
   User,
   X,
@@ -21,6 +24,9 @@ export const Icons = {
   link: Link2,
   image: ImageIcon,
   message: MessageSquare,
+  up: ArrowBigUp,
+  down: ArrowBigDown,
+  loading: Loader2,
   circle: (props: LucideProps) => (
     <svg
       viewBox="0 0 24 24"

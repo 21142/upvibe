@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FC, useRef } from 'react'
 import DisplayEditorOutput from './DisplayEditorOutput'
 import { Icons } from './Icons'
+import PostVotesClient from './PostVotesClient'
 
 type PartialVote = Pick<Vote, 'type'>
 
@@ -18,12 +19,16 @@ interface PostProps {
    commentsAmount: number
 }
 
-const Post: FC<PostProps> = ({ zenZoneName, post, commentsAmount }) => {
+const Post: FC<PostProps> = ({ zenZoneName, post, commentsAmount, votesAmount, currentVote }) => {
    const postRef = useRef<HTMLParagraphElement>(null)
 
    return <div className='rounded-md bg-white shadow'>
       <div className="px-6 py-4 flex justify-between">
-
+         <PostVotesClient
+            postId={post.id}
+            initialVotesAmount={votesAmount}
+            initialVote={currentVote?.type}
+         />
          <div className="w-0 flex-1">
             <div className="max-h-40 mt-1 text-xs text-gray-500">
                {zenZoneName ? (

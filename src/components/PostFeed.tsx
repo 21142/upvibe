@@ -1,12 +1,13 @@
 "use client"
 
-import { INIFNITE_SCROLLING } from '@/config'
+import { INFINITE_SCROLLING } from '@/config'
 import { ExtendedPost } from '@/types/db'
 import { useIntersection } from '@mantine/hooks'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
-import { FC, useRef } from 'react'
+import { FC, useEffect, useRef } from 'react'
+import { Icons } from './Icons'
 import Post from './Post'
 
 interface PostFeedProps {
@@ -28,8 +29,8 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, zenZoneName }) => {
       ['infinite-query'],
       async ({ pageParam = 1 }) => {
          const query =
-            `/api/posts?limit=${INIFNITE_SCROLLING}&page=${pageParam}` +
-            (!!zenZoneName ? `&subredditName=${zenZoneName}` : '')
+            `/api/posts?limit=${INFINITE_SCROLLING}&page=${pageParam}` +
+            (!!zenZoneName ? `&zenZoneName=${zenZoneName}` : '')
 
          const { data } = await axios.get(query)
          return data as ExtendedPost[]
@@ -41,6 +42,13 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, zenZoneName }) => {
          initialData: { pages: [initialPosts], pageParams: [1] },
       }
    )
+
+   useEffect(() => {
+      if (entry?.isIntersecting) {
+         fetchNextPage()
+      }
+   }, [entry, fetchNextPage])
+
 
    const postsToShow = data?.pages.flatMap((page) => page) ?? initialPosts
 
@@ -82,6 +90,12 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, zenZoneName }) => {
             )
          }
       })}
+
+      {isFetchingNextPage && (
+         <li className='flex justify-center'>
+            <Icons.loading className='w-6 h-6 text-zinc-500 animate-spin' />
+         </li>
+      )}
    </ul>
 }
 
