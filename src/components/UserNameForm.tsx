@@ -4,7 +4,6 @@ import { toast } from '@/hooks/use-toast'
 import { UsernameRequest, UsernameValidator } from '@/lib/validation/username'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { User } from '@prisma/client'
-import { Label } from '@radix-ui/react-dropdown-menu'
 import { useMutation } from '@tanstack/react-query'
 import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
@@ -13,6 +12,7 @@ import { useForm } from 'react-hook-form'
 import { Button } from './ui/Button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/Card'
 import { Input } from './ui/Input'
+import { Label } from './ui/Label'
 
 interface UserNameFormProps {
    user: Pick<User, 'id' | 'name'>
