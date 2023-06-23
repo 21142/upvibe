@@ -2,6 +2,7 @@ import { Icons } from "@/components/Icons";
 import { getAuthSession } from "@/lib/auth";
 import Link from "next/link";
 import AuthDropdownMenu from "./AuthDropdownMenu";
+import Search from "./Search";
 import { buttonVariants } from "./ui/Button";
 
 const Navbar = async () => {
@@ -16,6 +17,7 @@ const Navbar = async () => {
             upvibe
           </p>
         </Link>
+        <Search />
         {session?.user ? (
           <AuthDropdownMenu user={session.user} />
         ) : (

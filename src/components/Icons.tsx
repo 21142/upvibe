@@ -9,6 +9,7 @@ import {
   Loader2,
   MessageSquare,
   User,
+  Users2,
   X,
   type LucideIcon,
   type LucideProps
@@ -19,6 +20,7 @@ export const Icons = {
   logo: Command,
   chevronLeft: ChevronLeft,
   user: User,
+  users: Users2,
   close: X,
   home: Home,
   link: Link2,

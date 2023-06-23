@@ -41,10 +41,10 @@ const AuthDropdownMenu: FC<AuthDropdownMenuProps> = ({ user }) => {
           <Link href="/">Timeline</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/">Create a community</Link>
+          <Link href="/zenzone/create">Create a community</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/">Settings</Link>
+          <Link href="/settings">Settings</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={(event) => {
