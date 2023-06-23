@@ -9,7 +9,7 @@ interface PageProps {
    }
 }
 
-const page = async ({ params }: PageProps) => {
+const Page = async ({ params }: PageProps) => {
    const zenzone = await db.zenZone.findFirst({
       where: {
          name: params.slug
@@ -40,4 +40,4 @@ const page = async ({ params }: PageProps) => {
    </div>
 }
 
-export default page
+export default Page
