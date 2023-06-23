@@ -1,3 +1,5 @@
+"use client"
+
 import { Prisma } from '@prisma/client'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'

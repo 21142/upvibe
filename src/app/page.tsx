@@ -15,7 +15,7 @@ export default async function Home() {
         {/* @ts-expect-error MainFeed is a server component */}
         {session ? <YourFeed /> : <MainFeed />}
 
-        <div className="overflow-hidden h-fit rounded-lg border-gray-200 order-first">
+        <div className="overflow-hidden h-fit rounded-lg border-gray-200 order-first md:order-last">
           <div className="bg-sky-100 px-6 py-4">
             <p className="font-semibold py-3 flex items-center gap-1.5">
               <Icons.home className="w-4 h-4" />

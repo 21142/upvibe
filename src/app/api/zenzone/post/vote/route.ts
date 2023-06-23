@@ -57,6 +57,7 @@ export async function PATCH(req: Request) {
             })
 
             recountVotesThenCacheIfQualifies(associatedPost, voteType, postId)
+
             return new Response("OK");
          }
 
@@ -72,6 +73,7 @@ export async function PATCH(req: Request) {
             }
          })
 
+         recountVotesThenCacheIfQualifies(associatedPost, voteType, postId)
 
          return new Response("OK");
       }
@@ -86,6 +88,7 @@ export async function PATCH(req: Request) {
 
       recountVotesThenCacheIfQualifies(associatedPost, voteType, postId)
 
+      return new Response("OK");
    } catch (error) {
       if (error instanceof z.ZodError) {
          return new Response('Invalid request body', { status: 422 });

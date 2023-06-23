@@ -44,7 +44,7 @@ const Post: FC<PostProps> = ({ zenZoneName, post, commentsAmount, votesAmount, c
                {formatTimeToNow(new Date(post.createdAt))}
             </div>
 
-            <a href={`/r/${zenZoneName}/post/${post.id}`}>
+            <a href={`/zenzone/${zenZoneName}/post/${post.id}`}>
                <h1 className='text-lg font-semibold py-2 leading-6 text-gray-900'>
                   {post.title}
                </h1>
