@@ -1,24 +1,24 @@
-import { db } from "@/lib/db"
+import { db } from '@/lib/db';
 
 export async function GET(req: Request) {
-   const url = new URL(req.url)
-   const query = url.searchParams.get('q')
+  const url = new URL(req.url);
+  const query = url.searchParams.get('q');
 
-   if (!query) return new Response("No search query provided", { status: 400 })
+  if (!query) return new Response('No search query provided', { status: 400 });
 
-   const results = await db.zenZone.findMany({
-      where: {
-         name: {
-            startsWith: query,
-         }
+  const results = await db.zenZone.findMany({
+    where: {
+      name: {
+        startsWith: query,
       },
-      include: {
-         _count: true
-      },
-      take: 5
-   })
+    },
+    include: {
+      _count: true,
+    },
+    take: 5,
+  });
 
-   if (!results) return new Response("No results found", { status: 404 })
+  if (!results) return new Response('No results found', { status: 404 });
 
-   return new Response(JSON.stringify(results));
+  return new Response(JSON.stringify(results));
 }

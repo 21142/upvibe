@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { FC } from "react";
-import { Button } from "./ui/Button";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
-import { signIn } from "next-auth/react";
-import { Icons } from "./Icons";
-import { useToast } from "@/hooks/use-toast";
+import { FC } from 'react';
+import { Button } from './ui/Button';
+import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import { signIn } from 'next-auth/react';
+import { Icons } from './Icons';
+import { useToast } from '@/hooks/use-toast';
 
 interface SignInFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -17,13 +17,13 @@ const SignInForm: FC<SignInFormProps> = ({ className, ...props }) => {
     setIsLoading(true);
 
     try {
-      await signIn("google");
+      await signIn('google');
     } catch (e) {
       toast({
-        title: "An error occurred.",
+        title: 'An error occurred.',
         description:
-          "There was an error while signing in with Google. Please try again later.",
-        variant: "destructive",
+          'There was an error while signing in with Google. Please try again later.',
+        variant: 'destructive',
       });
     } finally {
       setIsLoading(false);
@@ -31,14 +31,17 @@ const SignInForm: FC<SignInFormProps> = ({ className, ...props }) => {
   };
 
   return (
-    <div className={cn("flex justify-center", className)} {...props}>
+    <div
+      className={cn('flex justify-center', className)}
+      {...props}
+    >
       <Button
         onClick={loginWithGoogle}
         isLoading={isLoading}
         className="w-full"
         size="sm"
       >
-        {isLoading ? null : <Icons.google className="pr-2 h-4 w-4" />}
+        {isLoading ? null : <Icons.google className="h-4 w-4 pr-2" />}
         Google
       </Button>
     </div>

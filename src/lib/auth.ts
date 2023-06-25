@@ -1,13 +1,13 @@
-import { db } from "@/lib/db";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { nanoid } from "nanoid";
-import { NextAuthOptions, getServerSession } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import { db } from '@/lib/db';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { nanoid } from 'nanoid';
+import { NextAuthOptions, getServerSession } from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   pages: {
-    signIn: "/sign-in",
+    signIn: '/sign-in',
   },
   providers: [
     GoogleProvider({
@@ -16,7 +16,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   callbacks: {
     async session({ token, session }) {
@@ -64,7 +64,7 @@ export const authOptions: NextAuthOptions = {
     },
 
     redirect() {
-      return "/";
+      return '/';
     },
   },
 };
