@@ -63,7 +63,7 @@ const Page = async ({ params }: PageProps) => {
         >
           {/* @ts-expect-error PostVotesServerStream is a server component */}
           <PostVotesServerStream
-            postId={post.id ?? cachedPost.id}
+            postId={post?.id ?? cachedPost.id}
             getData={async () => {
               return await db.post.findUnique({
                 where: {

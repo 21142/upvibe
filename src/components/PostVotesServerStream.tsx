@@ -7,7 +7,7 @@ interface PostVotesServerStreamProps {
   postId: string;
   initialVotesAmount?: number;
   initialVote?: VoteType | null;
-  getData?: () => Promise<Post & { votes: Vote[] | null }>;
+  getData?: () => Promise<(Post & { votes: Vote[] | null }) | null>;
 }
 
 const PostVotesServerStream = async ({
