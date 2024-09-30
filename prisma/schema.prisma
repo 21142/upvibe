@@ -5,6 +5,7 @@ generator client {
 datasource db {
   provider     = "postgresql"
   url          = env("DATABASE_URL")
+  directUrl    = env("DIRECT_URL")
   relationMode = "prisma"
 }
 
@@ -94,7 +95,7 @@ model Comment {
   postId    String
   author    User          @relation(fields: [authorId], references: [id])
   authorId  String
-  replyTo   Comment?      @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replyTo   Comment?      @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: Restrict, onUpdate: Restrict)
   replies   Comment[]     @relation("ReplyTo")
   replyToId String?
   votes     CommentVote[]
