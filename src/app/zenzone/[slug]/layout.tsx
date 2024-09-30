@@ -101,7 +101,7 @@ const Layout = async ({
                   variant: 'outline',
                   className: 'mb-6 w-full',
                 })}
-                href={`zenzone/${slug}/submit`}
+                href={`${slug}/submit`}
               >
                 Create Post
               </Link>
